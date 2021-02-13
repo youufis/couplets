@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import socket
 
+#请自行在百度ai注册申请
 APP_ID="18140627"
 API_KEY="e1zYnnLUmuxNwcXGtK12nQAs"
 SECRET_KEY="FI9Fq68RFY8V2kLMXKE7jlgxG3Nsq682"
@@ -114,7 +115,7 @@ def parse_poem(data):
     print(poem)
     return title, poem
 
-#返回矩形
+#返回矩形(备用)
 def getrect(fimg):
     image = cv2.imread(fimg)
     blur = cv2.pyrMeanShiftFiltering(image, 11, 21)
@@ -153,12 +154,13 @@ text=input("请输入关键词（不超过5个字）：")
 couplets=get_couplets(text, gettoken(), index=0)
 if couplets!=text:
     ckey=parse_couplets(couplets)
-'''
+
 poem=get_poem(text, gettoken(), index=0)
 if poem!=text:
     pkey=parse_poem(poem)
-'''
+
 img=cv2.imread("bg.jpg")
+img2=cv2.imread("bg1.jpg")
 #cv2.imshow("img",img)
 img=cv2ImgAddText(img, ckey[0], 135, 35, (0, 0, 0), 30)
 for i in ckey[1]:
@@ -166,9 +168,10 @@ for i in ckey[1]:
 for i in ckey[2]:
     img=cv2ImgAddText(img, i,328, 70+ckey[2].index(i)*45, (0, 0, 0), 30)
 
-#img=cv2ImgAddText(img, pkey[0], 185, 280, (0, 0, 0), 20)
-#img=cv2ImgAddText(img, pkey[1], 130, 300, (0, 0, 0), 20)
+img2=cv2ImgAddText(img2, pkey[0], 320, 100, (0, 0, 0), 30)
+img2=cv2ImgAddText(img2, pkey[1], 240, 150, (0, 0, 0), 30)
 
 cv2.imshow(zh_ch(text),img)
+cv2.imshow(zh_ch("诗"),img2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
