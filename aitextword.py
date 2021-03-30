@@ -7,9 +7,9 @@ import numpy as np
 import socket
 
 #请自行在百度ai注册申请
-APP_ID="*****"
-API_KEY="******"
-SECRET_KEY="*****"
+APP_ID="18140627"
+API_KEY="e1zYnnLUmuxNwcXGtK12nQAs"
+SECRET_KEY="FI9Fq68RFY8V2kLMXKE7jlgxG3Nsq682"
 client = AipNlp(APP_ID, API_KEY, SECRET_KEY)
 
 # 获取 token
